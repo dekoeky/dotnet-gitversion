@@ -24,7 +24,7 @@ jobs:
       - name: Display GitVersion config
         uses: gittools/actions/gitversion/execute@v0
         with:
-          useConfigFile: true
+          # useConfigFile: true
           additionalArguments: '/showConfig'
               
       - name: Display GitVersion outputs (step output)
