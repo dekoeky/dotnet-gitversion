@@ -30,35 +30,35 @@ jobs:
               
       - name: Display GitVersion outputs (step output)
         run: |
-          echo "Major: ${{ steps.determine-version.outputs.major }}"
-          echo "Minor: ${{ steps.determine-version.outputs.minor }}"
-          echo "Patch: ${{ steps.determine-version.outputs.patch }}"
-          echo "PreReleaseTag: ${{ steps.determine-version.outputs.preReleaseTag }}"
-          echo "PreReleaseTagWithDash: ${{ steps.determine-version.outputs.preReleaseTagWithDash }}"
-          echo "PreReleaseLabel: ${{ steps.determine-version.outputs.preReleaseLabel }}"
-          echo "PreReleaseNumber: ${{ steps.determine-version.outputs.preReleaseNumber }}"
-          echo "WeightedPreReleaseNumber: ${{ steps.determine-version.outputs.weightedPreReleaseNumber }}"
-          echo "BuildMetaData: ${{ steps.determine-version.outputs.buildMetaData }}"
-          echo "BuildMetaDataPadded: ${{ steps.determine-version.outputs.buildMetaDataPadded }}"
-          echo "FullBuildMetaData: ${{ steps.determine-version.outputs.fullBuildMetaData }}"
-          echo "MajorMinorPatch: ${{ steps.determine-version.outputs.majorMinorPatch }}"
-          echo "SemVer: ${{ steps.determine-version.outputs.semVer }}"
-          echo "LegacySemVer: ${{ steps.determine-version.outputs.legacySemVer }}"
-          echo "LegacySemVerPadded: ${{ steps.determine-version.outputs.legacySemVerPadded }}"
-          echo "AssemblySemVer: ${{ steps.determine-version.outputs.assemblySemVer }}"
-          echo "AssemblySemFileVer: ${{ steps.determine-version.outputs.assemblySemFileVer }}"
-          echo "FullSemVer: ${{ steps.determine-version.outputs.fullSemVer }}"
-          echo "InformationalVersion: ${{ steps.determine-version.outputs.informationalVersion }}"
-          echo "BranchName: ${{ steps.determine-version.outputs.branchName }}"
-          echo "EscapedBranchName: ${{ steps.determine-version.outputs.escapedBranchName }}"
-          echo "Sha: ${{ steps.determine-version.outputs.sha }}"
-          echo "ShortSha: ${{ steps.determine-version.outputs.shortSha }}"
-          echo "NuGetVersionV2: ${{ steps.determine-version.outputs.nuGetVersionV2 }}"
-          echo "NuGetVersion: ${{ steps.determine-version.outputs.nuGetVersion }}"
-          echo "NuGetPreReleaseTagV2: ${{ steps.determine-version.outputs.nuGetPreReleaseTagV2 }}"
-          echo "NuGetPreReleaseTag: ${{ steps.determine-version.outputs.nuGetPreReleaseTag }}"
-          echo "VersionSourceSha: ${{ steps.determine-version.outputs.versionSourceSha }}"
-          echo "CommitsSinceVersionSource: ${{ steps.determine-version.outputs.commitsSinceVersionSource }}"
-          echo "CommitsSinceVersionSourcePadded: ${{ steps.determine-version.outputs.commitsSinceVersionSourcePadded }}"
-          echo "UncommittedChanges: ${{ steps.determine-version.outputs.uncommittedChanges }}"
-          echo "CommitDate: ${{ steps.determine-version.outputs.commitDate }}"
+          echo "Major: ${{ steps.determine-version.outputs.major }}" | tee version-output.txt
+          echo "Minor: ${{ steps.determine-version.outputs.minor }}" | tee version-output.txt -a
+          echo "Patch: ${{ steps.determine-version.outputs.patch }}" | tee version-output.txt -a
+          echo "PreReleaseTag: ${{ steps.determine-version.outputs.preReleaseTag }}" | tee version-output.txt -a
+          echo "PreReleaseTagWithDash: ${{ steps.determine-version.outputs.preReleaseTagWithDash }}" | tee version-output.txt -a
+          echo "PreReleaseLabel: ${{ steps.determine-version.outputs.preReleaseLabel }}" | tee version-output.txt -a
+          echo "PreReleaseNumber: ${{ steps.determine-version.outputs.preReleaseNumber }}" | tee version-output.txt -a
+          echo "WeightedPreReleaseNumber: ${{ steps.determine-version.outputs.weightedPreReleaseNumber }}" | tee version-output.txt -a
+          echo "BuildMetaData: ${{ steps.determine-version.outputs.buildMetaData }}" | tee version-output.txt -a
+          echo "BuildMetaDataPadded: ${{ steps.determine-version.outputs.buildMetaDataPadded }}" | tee version-output.txt -a
+          echo "FullBuildMetaData: ${{ steps.determine-version.outputs.fullBuildMetaData }}" | tee version-output.txt -a
+          echo "MajorMinorPatch: ${{ steps.determine-version.outputs.majorMinorPatch }}" | tee version-output.txt -a
+          echo "SemVer: ${{ steps.determine-version.outputs.semVer }}" | tee version-output.txt -a
+          echo "LegacySemVer: ${{ steps.determine-version.outputs.legacySemVer }}" | tee version-output.txt -a
+          echo "LegacySemVerPadded: ${{ steps.determine-version.outputs.legacySemVerPadded }}" | tee version-output.txt -a
+          echo "AssemblySemVer: ${{ steps.determine-version.outputs.assemblySemVer }}" | tee version-output.txt -a
+          echo "AssemblySemFileVer: ${{ steps.determine-version.outputs.assemblySemFileVer }}" | tee version-output.txt -a
+          echo "FullSemVer: ${{ steps.determine-version.outputs.fullSemVer }}" | tee version-output.txt -a
+          echo "InformationalVersion: ${{ steps.determine-version.outputs.informationalVersion }}" | tee version-output.txt -a
+          echo "BranchName: ${{ steps.determine-version.outputs.branchName }}" | tee version-output.txt -a
+          echo "EscapedBranchName: ${{ steps.determine-version.outputs.escapedBranchName }}" | tee version-output.txt -a
+          echo "Sha: ${{ steps.determine-version.outputs.sha }}" | tee version-output.txt -a
+          echo "ShortSha: ${{ steps.determine-version.outputs.shortSha }}" | tee version-output.txt -a
+          echo "NuGetVersionV2: ${{ steps.determine-version.outputs.nuGetVersionV2 }}" | tee version-output.txt -a
+          echo "NuGetVersion: ${{ steps.determine-version.outputs.nuGetVersion }}" | tee version-output.txt -a
+          echo "NuGetPreReleaseTagV2: ${{ steps.determine-version.outputs.nuGetPreReleaseTagV2 }}" | tee version-output.txt -a
+          echo "NuGetPreReleaseTag: ${{ steps.determine-version.outputs.nuGetPreReleaseTag }}" | tee version-output.txt -a
+          echo "VersionSourceSha: ${{ steps.determine-version.outputs.versionSourceSha }}" | tee version-output.txt -a
+          echo "CommitsSinceVersionSource: ${{ steps.determine-version.outputs.commitsSinceVersionSource }}" | tee version-output.txt -a
+          echo "CommitsSinceVersionSourcePadded: ${{ steps.determine-version.outputs.commitsSinceVersionSourcePadded }}" | tee version-output.txt -a
+          echo "UncommittedChanges: ${{ steps.determine-version.outputs.uncommittedChanges }}" | tee version-output.txt -a
+          echo "CommitDate: ${{ steps.determine-version.outputs.commitDate }}" | tee version-output.txt -a
