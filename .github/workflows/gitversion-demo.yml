@@ -1,11 +1,14 @@
 name: GitVersion Demo
 on: 
-  workflow_dispatch
-  
+  - workflow_dispatch
+  - push
+
 jobs:
   demo:
     name: GitVersion Demonstration
     runs-on: ubuntu-latest
+    outputs:
+      outputtest: "${{ steps.determine-version.outputs.fullSemVer }}"
     steps:
     
       - name: Checkout the code
