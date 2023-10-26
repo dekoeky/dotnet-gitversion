@@ -67,7 +67,7 @@ jobs:
           echo "UncommittedChanges: ${{ steps.determine-version.outputs.uncommittedChanges }}" | tee version-output.txt -a
           echo "CommitDate: ${{ steps.determine-version.outputs.commitDate }}" | tee version-output.txt -a
 
-      - name: Store the NuGet artifacts
+      - name: Store the output artifact
         uses: actions/upload-artifact@v2
         with:
           name: output
