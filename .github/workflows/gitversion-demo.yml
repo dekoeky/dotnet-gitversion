@@ -2,7 +2,6 @@ name: GitVersion Demo
 on: 
   - workflow_dispatch
   - push
-run-name: "GitVersion Demo @ branch ${{ github.action.branchName }}"
 
 jobs:
   demo:
@@ -100,6 +99,15 @@ jobs:
           (Get-ChildItem ./src/app/bin/*/*/app.dll).VersionInfo
           (Get-ChildItem ./src/library.tests/bin/*/*/library.tests.dll).VersionInfo
   
+      - name: Print some stuff
+        run: |
+          echo "Action: ${{ github.action }}"
+          echo "Repo: ${{ github.action_repository }}"
+          echo "Status: ${{ github.action_status }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Triggering Actor: ${{ github.triggering_actor }}"
+          echo "Action: ${{ github.action.branch }}"
+
       - name: Show created packages
         run: |
           echo ${{ steps.determine-version.conclusion }}
