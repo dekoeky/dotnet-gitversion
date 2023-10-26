@@ -110,6 +110,15 @@ jobs:
           echo "Actor: ${{ github.actor }}"
           echo "Triggering Actor: ${{ github.triggering_actor }}"
           echo "Action: ${{ github.action.branch }}"
+          echo "${{ github.event }}"
+          echo "${{ github.event_name }}"
+          echo "${{ github.event_path }}"
+          echo "${{ github.head_ref }}"
+          echo "${{ github.workspace }}"
+          echo "${{ github.workflow }}"
+          echo "${{ github.path }}"
+          echo "${{ github.ref }}"
+          echo "${{ github.ref_name }}"
 
       - name: Show created packages
         run: |
