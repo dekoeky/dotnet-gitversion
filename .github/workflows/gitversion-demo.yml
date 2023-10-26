@@ -71,3 +71,30 @@ jobs:
         with:
           name: output
           path: version-output.txt
+
+      - name: Setup .NET SDKs
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      
+      - name: Restore Dependencies
+        run: dotnet restore ./src
+
+      - name: Build
+        run: dotnet build ./src --no-restore
+
+      - name: Test
+        run: dotnet test ./src --no-restore --no-build
+
+      - name: Pack
+        run: dotnet pack ./src --no-restore
+
+      - name: Show created packages
+        run: find . -name "*.nupkg"
+
+      - name: qdssqd
+        shell: pwsh
+        run: |
+          (Get-ChildItem ./src/library/bin/*/*/library.dll).VersionInfo
+          (Get-ChildItem ./src/app/bin/*/*/app.dll).VersionInfo
+          (Get-ChildItem ./src/library.tests/bin/*/*/library.tests.dll).VersionInfo
