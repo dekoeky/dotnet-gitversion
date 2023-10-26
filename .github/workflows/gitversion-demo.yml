@@ -99,3 +99,11 @@ jobs:
           (Get-ChildItem ./src/library/bin/*/*/library.dll).VersionInfo
           (Get-ChildItem ./src/app/bin/*/*/app.dll).VersionInfo
           (Get-ChildItem ./src/library.tests/bin/*/*/library.tests.dll).VersionInfo
+  
+      - name: Show created packages
+        run: |
+          echo ${{ steps.determine-version.conclusion }}
+          echo ${{ steps.determine-version.outcome }}
+
+      - name: "Creating Package ${{ steps.determine-version.outputs.nuGetVersion }}"
+        run: echo "Creating Package ${{ steps.determine-version.outputs.nuGetVersion }}"
