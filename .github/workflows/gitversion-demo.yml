@@ -119,8 +119,3 @@ jobs:
           echo "${{ github.path }}"
           echo "${{ github.ref }}"
           echo "${{ github.ref_name }}"
-
-      - name: Show created packages
-        run: |
-          echo ${{ steps.determine-version.conclusion }}
-          echo ${{ steps.determine-version.outcome }}
