@@ -1,8 +1,10 @@
+
 name: GitVersion Demo
+run-name: "${{ github.triggering_actor }} started ${{ github.workflow }} on branch ${{ github.ref_name }} via ${{ github.event_name }}"
 on: 
   - workflow_dispatch
   - push
-
+  
 jobs:
   demo:
     name: GitVersion Demonstration
