@@ -2,6 +2,7 @@ name: GitVersion Demo
 on: 
   - workflow_dispatch
   - push
+run-name: "GitVersion Demo @ branch ${{ github.action.branchName }}"
 
 jobs:
   demo:
