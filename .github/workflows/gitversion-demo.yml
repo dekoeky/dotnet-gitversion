@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       outputtest: "${{ steps.determine-version.outputs.fullSemVer }}"
+      
     steps:
     
       - name: Checkout the code
@@ -16,8 +17,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: git status
-        run: git status
+      - name: Show Current Branch
+        run: git branch --show-current
               
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
@@ -27,14 +28,13 @@ jobs:
       - name: Display GitVersion config
         uses: gittools/actions/gitversion/execute@v0
         with:
-          # useConfigFile: true
           additionalArguments: '/showConfig'
           
       - id: determine-version
-        name: Determine Version
+        name: Determine Semantic Versions
         uses: gittools/actions/gitversion/execute@v0
               
-      - name: Display GitVersion outputs (step output)
+      - name: Display GitVersion outputs
         run: |
           echo "Major: ${{ steps.determine-version.outputs.major }}" | tee version-output.txt
           echo "Minor: ${{ steps.determine-version.outputs.minor }}" | tee version-output.txt -a
@@ -110,11 +110,17 @@ jobs:
           echo "Actor: ${{ github.actor }}"
           echo "Triggering Actor: ${{ github.triggering_actor }}"
           echo "Action: ${{ github.action.branch }}"
+          echo "${{ github.event }}"
+          echo "${{ github.event_name }}"
+          echo "${{ github.event_path }}"
+          echo "${{ github.head_ref }}"
+          echo "${{ github.workspace }}"
+          echo "${{ github.workflow }}"
+          echo "${{ github.path }}"
+          echo "${{ github.ref }}"
+          echo "${{ github.ref_name }}"
 
       - name: Show created packages
         run: |
           echo ${{ steps.determine-version.conclusion }}
           echo ${{ steps.determine-version.outcome }}
-
-      - name: "Creating Package ${{ steps.determine-version.outputs.nuGetVersion }}"
-        run: echo "Creating Package ${{ steps.determine-version.outputs.nuGetVersion }}"
