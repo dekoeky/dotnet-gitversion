@@ -93,7 +93,7 @@ jobs:
       - name: Show created packages
         run: find . -name "*.nupkg"
 
-      - name: qdssqd
+      - name: Show built dll versions
         shell: pwsh
         run: |
           (Get-ChildItem ./src/library/bin/*/*/library.dll).VersionInfo
