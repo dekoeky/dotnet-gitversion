@@ -1,0 +1,71 @@
+
+name: Show Version
+run-name: "Workflow ${{ github.workflow }} on branch ${{ github.ref_name }} via ${{ github.event_name }}"
+on: 
+  - workflow_dispatch
+  - push
+  - pull_request
+  
+jobs:
+  demo:
+    name: GitVersion Demonstration
+    runs-on: ubuntu-latest
+    outputs:
+      outputtest: "${{ steps.determine-version.outputs.fullSemVer }}"
+      
+    steps:
+    
+      - name: Checkout the code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+              
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+         versionSpec: '5.x'
+            
+      - id: determine-version
+        name: Determine Semantic Versions
+        uses: gittools/actions/gitversion/execute@v0
+              
+      - name: Display GitVersion outputs
+        run: |
+          echo "Major: ${{ steps.determine-version.outputs.major }}" | tee version-output.txt
+          echo "Minor: ${{ steps.determine-version.outputs.minor }}" | tee version-output.txt -a
+          echo "Patch: ${{ steps.determine-version.outputs.patch }}" | tee version-output.txt -a
+          echo "PreReleaseTag: ${{ steps.determine-version.outputs.preReleaseTag }}" | tee version-output.txt -a
+          echo "PreReleaseTagWithDash: ${{ steps.determine-version.outputs.preReleaseTagWithDash }}" | tee version-output.txt -a
+          echo "PreReleaseLabel: ${{ steps.determine-version.outputs.preReleaseLabel }}" | tee version-output.txt -a
+          echo "PreReleaseNumber: ${{ steps.determine-version.outputs.preReleaseNumber }}" | tee version-output.txt -a
+          echo "WeightedPreReleaseNumber: ${{ steps.determine-version.outputs.weightedPreReleaseNumber }}" | tee version-output.txt -a
+          echo "BuildMetaData: ${{ steps.determine-version.outputs.buildMetaData }}" | tee version-output.txt -a
+          echo "BuildMetaDataPadded: ${{ steps.determine-version.outputs.buildMetaDataPadded }}" | tee version-output.txt -a
+          echo "FullBuildMetaData: ${{ steps.determine-version.outputs.fullBuildMetaData }}" | tee version-output.txt -a
+          echo "MajorMinorPatch: ${{ steps.determine-version.outputs.majorMinorPatch }}" | tee version-output.txt -a
+          echo "SemVer: ${{ steps.determine-version.outputs.semVer }}" | tee version-output.txt -a
+          echo "LegacySemVer: ${{ steps.determine-version.outputs.legacySemVer }}" | tee version-output.txt -a
+          echo "LegacySemVerPadded: ${{ steps.determine-version.outputs.legacySemVerPadded }}" | tee version-output.txt -a
+          echo "AssemblySemVer: ${{ steps.determine-version.outputs.assemblySemVer }}" | tee version-output.txt -a
+          echo "AssemblySemFileVer: ${{ steps.determine-version.outputs.assemblySemFileVer }}" | tee version-output.txt -a
+          echo "FullSemVer: ${{ steps.determine-version.outputs.fullSemVer }}" | tee version-output.txt -a
+          echo "InformationalVersion: ${{ steps.determine-version.outputs.informationalVersion }}" | tee version-output.txt -a
+          echo "BranchName: ${{ steps.determine-version.outputs.branchName }}" | tee version-output.txt -a
+          echo "EscapedBranchName: ${{ steps.determine-version.outputs.escapedBranchName }}" | tee version-output.txt -a
+          echo "Sha: ${{ steps.determine-version.outputs.sha }}" | tee version-output.txt -a
+          echo "ShortSha: ${{ steps.determine-version.outputs.shortSha }}" | tee version-output.txt -a
+          echo "NuGetVersionV2: ${{ steps.determine-version.outputs.nuGetVersionV2 }}" | tee version-output.txt -a
+          echo "NuGetVersion: ${{ steps.determine-version.outputs.nuGetVersion }}" | tee version-output.txt -a
+          echo "NuGetPreReleaseTagV2: ${{ steps.determine-version.outputs.nuGetPreReleaseTagV2 }}" | tee version-output.txt -a
+          echo "NuGetPreReleaseTag: ${{ steps.determine-version.outputs.nuGetPreReleaseTag }}" | tee version-output.txt -a
+          echo "VersionSourceSha: ${{ steps.determine-version.outputs.versionSourceSha }}" | tee version-output.txt -a
+          echo "CommitsSinceVersionSource: ${{ steps.determine-version.outputs.commitsSinceVersionSource }}" | tee version-output.txt -a
+          echo "CommitsSinceVersionSourcePadded: ${{ steps.determine-version.outputs.commitsSinceVersionSourcePadded }}" | tee version-output.txt -a
+          echo "UncommittedChanges: ${{ steps.determine-version.outputs.uncommittedChanges }}" | tee version-output.txt -a
+          echo "CommitDate: ${{ steps.determine-version.outputs.commitDate }}" | tee version-output.txt -a
+
+      - name: Store the output artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: version-output.txt
